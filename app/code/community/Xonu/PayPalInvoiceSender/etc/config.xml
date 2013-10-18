@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+* @copyright Copyright (c) 2013 Pawel Kazakow (http://xonu.de)
+*/
+-->
+<config>
+    <modules>
+        <Xonu_PayPalInvoiceSender>
+            <version>1.0.3</version>
+        </Xonu_PayPalInvoiceSender>
+    </modules>
+
+    <admin>
+        <routers>
+			<paypalinvoicesender>
+				<use>admin</use>
+				<args>
+					<module>Xonu_PayPalInvoiceSender</module>
+					<frontName>paypalinvoicesender</frontName>
+				</args>
+			</paypalinvoicesender>
+        </routers>
+    </admin>
+    <global>
+        <models>
+
+            <!-- Rewrite PayPal IPN Model -->
+            <paypal>
+                <rewrite>
+                    <ipn>Xonu_PayPalInvoiceSender_Model_Ipn</ipn>
+                </rewrite>
+            </paypal>
+
+        </models>
+
+        <resources>
+            <paypalinvoicesender_setup>
+                <setup>
+                    <module>Xonu_PayPalInvoiceSender</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </paypalinvoicesender_setup>
+            <paypalinvoicesender_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </paypalinvoicesender_write>
+            <paypalinvoicesender_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </paypalinvoicesender_read>
+        </resources>
+
+        <helpers>
+            <paypalinvoicesender>
+                <class>Xonu_PayPalInvoiceSender_Helper</class>
+            </paypalinvoicesender>
+        </helpers>
+
+    </global>
+</config>

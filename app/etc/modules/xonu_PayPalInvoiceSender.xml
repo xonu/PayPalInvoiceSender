@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+* @copyright Copyright (c) 2012 Pawel Kazakow (http://xonu.de)
+*/
+-->
+<config>
+    <modules>
+        <Xonu_PayPalInvoiceSender>
+            <active>true</active>
+            <codePool>community</codePool>
+        </Xonu_PayPalInvoiceSender>
+    </modules>
+</config> 
