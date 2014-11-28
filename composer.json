@@ -1,0 +1,14 @@
+{
+    "name": "xonu/paypalinvoicesender",
+    "description": "Autosends an invoice after succesful Paypal Payment.",
+    "type": "magento-module", 
+    "authors": [
+        {
+            "name": "Pawel Kazakow",
+            "email": "support@xonu.de"
+        }
+    ],
+    "require": {
+	"magento-hackathon/magento-composer-installer": "*"
+    }
+}
