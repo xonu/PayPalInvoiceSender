@@ -62,4 +62,11 @@
         </helpers>
 
     </global>
+    <default>
+        <payment>
+            <account>
+                <send_invoice>1</send_invoice>
+            </account>
+        </payment>
+    </default>
 </config>
