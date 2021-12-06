@@ -14,19 +14,24 @@ class Xonu_PayPalInvoiceSender_Model_Ipn extends Mage_Paypal_Model_Ipn
       /**
      * Process completed payment (either full or partial)
      */
-    protected function _registerPaymentCapture()
+    protected function _registerPaymentCapture($skipFraudDetection = false)
     {
         if ($this->getRequestData('transaction_entity') == 'auth') {
             return;
         }
+        $parentTransactionId = $this->getRequestData('parent_txn_id');
         $this->_importPaymentInformation();
         $payment = $this->_order->getPayment();
         $payment->setTransactionId($this->getRequestData('txn_id'))
+            ->setCurrencyCode($this->getRequestData('mc_currency'))
             ->setPreparedMessage($this->_createIpnComment(''))
-            ->setParentTransactionId($this->getRequestData('parent_txn_id'))
+            ->setParentTransactionId($parentTransactionId)
             ->setShouldCloseParentTransaction('Completed' === $this->getRequestData('auth_status'))
             ->setIsTransactionClosed(0)
-            ->registerCaptureNotification($this->getRequestData('mc_gross'));
+            ->registerCaptureNotification(
+                $this->getRequestData('mc_gross'),
+                $skipFraudDetection && $parentTransactionId
+            );
         $this->_order->save();
 
         // notify customer
