@@ -14,7 +14,7 @@ class Xonu_PayPalInvoiceSender_Model_Ipn extends Mage_Paypal_Model_Ipn
       /**
      * Process completed payment (either full or partial)
      */
-    protected function _registerPaymentCapture()
+    protected function _registerPaymentCapture($skipFraudDetection = false)
     {
         if ($this->getRequestData('transaction_entity') == 'auth') {
             return;
